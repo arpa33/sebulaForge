@@ -1,0 +1,68 @@
+# NebulaForge
+
+🚀 NebulaForge is a lightweight developer toolkit that simplifies GitHub repository creation and project initialization.
+
+## Features
+
+- Automatic repository scaffolding
+- Clean project structure generation
+- Git initialization
+- README generation
+- License templates
+- GitHub Actions workflow templates
+- Cross-platform support
+- Fast and customizable
+
+## Installation
+
+```bash
+git clone https://github.com/yourusername/NebulaForge.git
+cd NebulaForge
+```
+
+## Usage
+
+```bash
+python main.py
+```
+
+## Project Structure
+
+```
+NebulaForge/
+│
+├── src/
+├── templates/
+├── assets/
+├── docs/
+├── tests/
+├── main.py
+├── requirements.txt
+└── README.md
+```
+
+## Roadmap
+
+- Repository templates
+- AI-powered project generation
+- GitHub API integration
+- Docker support
+- CI/CD automation
+
+## License
+
+MIT License
+
+---
+
+Made with ❤️ for developers.
+github
+automation
+repository
+developer-tools
+python
+cli
+github-api
+project-generator
+templates
+open-source
