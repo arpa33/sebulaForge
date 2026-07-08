@@ -15,12 +15,6 @@
 
 ## Installation
 
-```bash
-git clone https://github.com/yourusername/NebulaForge.git
-cd NebulaForge
-```
-
-## Usage
 
 ```bash
 python main.py
@@ -41,6 +35,12 @@ NebulaForge/
 └── README.md
 ```
 
+```bash
+git clone https://github.com/yourusername/NebulaForge.git
+cd NebulaForge
+```
+
+## Usage
 ## Roadmap
 
 - Repository templates
