@@ -1,68 +1,50 @@
 # NebulaForge
 
-🚀 NebulaForge is a lightweight developer toolkit that simplifies GitHub repository creation and project initialization.
+NebulaForge is a lightweight automation framework designed for developers who value clean architecture and modular design.
 
 ## Features
 
-- Automatic repository scaffolding
-- Clean project structure generation
-- Git initialization
-- README generation
-- License templates
-- GitHub Actions workflow templates
+- Modular architecture
+- Fast and lightweight
+- Easy configuration
+- Extensible plugin system
 - Cross-platform support
-- Fast and customizable
 
 ## Installation
-
-
-```bash
-python main.py
-```
-
-## Project Structure
-
-```
-NebulaForge/
-│
-├── src/
-├── templates/
-├── assets/
-├── docs/
-├── tests/
-├── main.py
-├── requirements.txt
-└── README.md
-```
 
 ```bash
 git clone https://github.com/yourusername/NebulaForge.git
 cd NebulaForge
-```
+python main.py
+NebulaForge/
+│── main.py
+│── config.py
+│── requirements.txt
+│── README.md
+└── core/
+    ├── engine.py
+    ├── utils.py
+    └── plugins.py
 
-## Usage
-## Roadmap
+### Python Code (`main.py`)
+```python
+from datetime import datetime
 
-- Repository templates
-- AI-powered project generation
-- GitHub API integration
-- Docker support
-- CI/CD automation
+class NebulaForge:
+    def __init__(self):
+        self.name = "NebulaForge"
+        self.version = "1.0.0"
 
-## License
+    def start(self):
+        print(f"{self.name} v{self.version}")
+        print("Automation Engine Started")
+        print(f"Started at: {datetime.now()}")
 
-MIT License
+    def run_task(self, task):
+        print(f"Running task: {task}")
+        print("Task completed successfully.")
 
----
-
-Made with ❤️ for developers.
-github
-automation
-repository
-developer-tools
-python
-cli
-github-api
-project-generator
-templates
-open-source
+if __name__ == "__main__":
+    app = NebulaForge()
+    app.start()
+    app.run_task("System Initialization")
