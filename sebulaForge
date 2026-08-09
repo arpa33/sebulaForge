@@ -48,3 +48,9 @@ if __name__ == "__main__":
     app = NebulaForge()
     app.start()
     app.run_task("System Initialization")
+
+    def start(self):
+        print(f"{self.name} v{self.version}")
+        print("Automation Engine Started")
+        print(f"Started at: {datetime.now()}")
+
