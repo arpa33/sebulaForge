@@ -1,0 +1,135 @@
+veltrix/
+├── src/
+│   ├── commands/
+│   │   ├── init.ts
+│   │   ├── status.ts
+│   │   ├── doctor.ts
+│   │   └── clean.ts
+│   ├── core/
+│   │   ├── config.ts
+│   │   ├── git.ts
+│   │   └── logger.ts
+│   └── index.ts
+├── tests/
+│   ├── config.test.ts
+│   └── git.test.ts
+├── .github/
+│   └── workflows/
+│       └── ci.yml
+├── package.json
+├── tsconfig.json
+├── README.md
+├── LICENSE
+└── .gitignore
+#!/usr/bin/env node
+
+import { Command } from "commander";
+import { execSync } from "child_process";
+import fs from "fs";
+import path from "path";
+
+const program = new Command();
+
+program
+  .name("veltrix")
+  .description("A minimal developer productivity toolkit")
+  .version("1.0.0");
+
+program
+  .command("init")
+  .description("Initialize a new project workspace")
+  .argument("[directory]", "Target directory", ".")
+  .action((directory: string) => {
+    const target = path.resolve(directory);
+
+    fs.mkdirSync(path.join(target, "src"), { recursive: true });
+    fs.mkdirSync(path.join(target, "tests"), { recursive: true });
+
+    const gitignore = `node_modules/
+dist/
+.env
+.DS_Store
+`;
+
+    fs.writeFileSync(
+      path.join(target, ".gitignore"),
+      gitignore
+    );
+
+    console.log(`✓ Workspace initialized at ${target}`);
+  });
+
+program
+  .command("status")
+  .description("Show the current Git repository status")
+  .action(() => {
+    try {
+      const result = execSync("git status --short", {
+        encoding: "utf8",
+      });
+
+      if (!result.trim()) {
+        console.log("✓ Working tree is clean");
+        return;
+      }
+
+      console.log(result);
+    } catch {
+      console.error("✗ Not a Git repository");
+      process.exit(1);
+    }
+  });
+
+program
+  .command("doctor")
+  .description("Check the local development environment")
+  .action(() => {
+    const checks = [
+      {
+        name: "Node.js",
+        command: "node --version",
+      },
+      {
+        name: "Git",
+        command: "git --version",
+      },
+    ];
+
+    console.log("\nVeltrix Environment Check\n");
+
+    for (const check of checks) {
+      try {
+        const version = execSync(check.command, {
+          encoding: "utf8",
+        }).trim();
+
+        console.log(`✓ ${check.name}: ${version}`);
+      } catch {
+        console.log(`✗ ${check.name}: not found`);
+      }
+    }
+
+    console.log("");
+  });
+
+program
+  .command("clean")
+  .description("Remove generated build artifacts")
+  .argument("[directory]", "Project directory", ".")
+  .action((directory: string) => {
+    const dist = path.resolve(directory, "dist");
+
+    if (!fs.existsSync(dist)) {
+      console.log("✓ Nothing to clean");
+      return;
+    }
+
+    fs.rmSync(dist, {
+      recursive: true,
+      force: true,
+    });
+
+    console.log("✓ Build artifacts removed");
+  });
+
+program.parse();
